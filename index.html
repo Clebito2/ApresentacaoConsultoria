@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação | LiVe Consultoria - Liderança & Vendas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-petroleo: #06192a;
+            --azul-escuro-card: #0A243D;
+            --verde-vibrante: #00e800;
+            --branco: #ffffff;
+            --cinza-texto: #cccccc;
+            --cinza-sutil: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--azul-petroleo);
+            color: var(--branco);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            color: var(--branco);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--verde-vibrante);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .highlight {
+            color: var(--verde-vibrante);
+            text-shadow: 0 0 8px rgba(0, 232, 0, 0.7);
+        }
+
+        p {
+            color: var(--cinza-texto);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(6, 25, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 36, 61, 0.5);
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px; /* Header offset */
+        }
+        
+        .hero-content {
+            max-width: 900px;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--verde-vibrante);
+            color: var(--azul-petroleo);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 232, 0, 0.2);
+        }
+
+        /* Generic Card */
+        .card {
+            background-color: var(--azul-escuro-card);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            color: var(--verde-vibrante);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Seção Sobre */
+        #sobre .content, #sobre-luiz .content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #sobre-luiz {
+            padding-bottom: 3rem;
+        }
+        
+        .sobre-luiz-grid {
+            align-items: center;
+            text-align: left;
+        }
+        
+        .sobre-luiz-grid img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 15px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .sobre-luiz-grid p {
+             margin-bottom: 1rem;
+        }
+
+        /* Metodologia Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--verde-vibrante);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            opacity: 0.3;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            z-index: 2;
+        }
+        .timeline-item::after {
+            content: attr(data-step);
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: -20px;
+            background-color: var(--azul-escuro-card);
+            border: 4px solid var(--verde-vibrante);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            color: var(--verde-vibrante);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        .right {
+            left: 50%;
+        }
+        .right::after {
+            left: -20px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--azul-escuro-card);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Call to Action Section */
+        #cta {
+            background-color: var(--azul-escuro-card);
+            border-radius: 15px;
+            text-align: center;
+            padding: 5rem;
+        }
+
+        #cta h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        #cta p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(10, 36, 61, 0.5);
+            background-color: var(--azul-petroleo);
+        }
+        
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--cinza-sutil);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .grid-2 {
+                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            .left::after, .right::after {
+                left: 0;
+            }
+            .right {
+                left: 0%;
+            }
+            .left {
+                text-align: left;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png" alt="LiVe Consultoria Logo">
+        </a>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero fade-in">
+        <div class="hero-content">
+            <h1>Transformamos <span class="highlight">Pessoas</span>. Impulsionamos <span class="highlight">Empresas</span>.</h1>
+            <p>A LiVe Consultoria une planejamento e estruturação de negócios para elevar o padrão de liderança e performance em vendas da sua equipe.</p>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="container fade-in">
+        <h2>Nossa Filosofia: Atitude, Clareza e Ação</h2>
+        <div class="content">
+            <p>Acreditamos que alta performance é o resultado de uma equação simples e poderosa. Nós não apenas apontamos o caminho, nós o construímos ao seu lado, transformando potencial em resultados concretos e sustentáveis.</p>
+        </div>
+    </section>
+
+    <!-- Para quem é -->
+    <section id="para-quem" class="container fade-in">
+        <h2>Para quem é a Consultoria LiVe?</h2>
+        <div class="grid grid-4">
+            <div class="card">
+                <h3>Empresas em Crescimento</h3>
+                <p>Negócios que precisam estruturar processos, tecnologia e equipes para suportar a expansão de forma sustentável e organizada.</p>
+            </div>
+            <div class="card">
+                <h3>Gestores e Líderes</h3>
+                <p>Profissionais que buscam desenvolver habilidades de liderança, engajar suas equipes e otimizar a performance do seu setor.</p>
+            </div>
+            <div class="card">
+                <h3>Negócios em Reestruturação</h3>
+                <p>Empresas familiares ou em transição que necessitam de governança, planejamento sucessório e modernização da gestão.</p>
+            </div>
+            <div class="card">
+                <h3>Empreendedores</h3>
+                <p>Fundadores que precisam de um parceiro estratégico para validar modelos de negócio, estruturar a operação e planejar o crescimento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Soluções -->
+    <section id="servicos" class="container fade-in">
+        <h2>Nossas Soluções</h2>
+        <div style="text-align: center; max-width: 800px; margin: -2rem auto 3rem auto;">
+            <p>Oferecemos um portfólio de soluções integradas, desenhadas para atender aos desafios específicos do seu negócio em cada etapa da jornada.</p>
+        </div>
+        <div class="grid grid-3">
+            <div class="card">
+                <h3>Inteligência Comercial e Vendas</h3>
+                <p>Análise de mercado, definição de público, estruturação de funil de vendas, criação de playbooks, e implementação de CRM para uma gestão baseada em dados.</p>
+            </div>
+            <div class="card">
+                <h3>Marketing e Gestão de Tráfego</h3>
+                <p>Desenvolvimento de estratégias de marketing digital, gestão de tráfego pago (Google Ads, Meta Ads), e inbound marketing para atração e conversão de leads qualificados.</p>
+            </div>
+            <div class="card">
+                <h3>Estratégia e Gestão (BI)</h3>
+                <p>Implementação de Business Intelligence, criação de dashboards, análise de dados para tomada de decisão, planejamento estratégico e societário para garantir o alinhamento.</p>
+            </div>
+            <div class="card">
+                <h3>Gestão de Pessoas</h3>
+                <p>Diagnóstico de clima organizacional, desenvolvimento de planos de cargos e salários, programas de incentivo, recrutamento, seleção e otimização de processos de RH.</p>
+            </div>
+            <div class="card">
+                <h3>Desenvolvimento de Lideranças</h3>
+                <p>Programas de formação para líderes com base na metodologia da Liderança Antifrágil, capacitando gestores para engajar equipes e navegar em cenários de alta complexidade.</p>
+            </div>
+            <div class="card">
+                <h3>Tecnologia e Inovação</h3>
+                <p>Consultoria para implantação de ERPs, automação de processos e adoção de tecnologias que aumentam a eficiência, reduzem custos e preparam a empresa para o futuro.</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- Seção Metodologia -->
+    <section id="metodologia" class="container fade-in">
+        <h2>Como Funciona a Nossa Parceria</h2>
+        <div class="timeline">
+            <div class="timeline-item left fade-in" data-step="1">
+                <div class="timeline-content">
+                    <h3>Diagnóstico</h3>
+                    <p>Mergulhamos no seu negócio para entender os desafios, oportunidades e metas, utilizando nossa metodologia de Maturidade x Impacto para identificar prioridades.</p>
+                </div>
+            </div>
+            <div class="timeline-item right fade-in" data-step="2">
+                <div class="timeline-content">
+                    <h3>Planejamento</h3>
+                    <p>Co-criamos um plano de ação detalhado, com metas claras, entregáveis definidos e um cronograma realista, organizados em um dashboard para total transparência.</p>
+                </div>
+            </div>
+            <div class="timeline-item left fade-in" data-step="3">
+                <div class="timeline-content">
+                    <h3>Execução</h3>
+                    <p>Atuamos lado a lado com sua equipe na implementação das soluções, utilizando metodologias ágeis (Sprints, Kanban) para garantir entregas rápidas e contínuas.</p>
+                </div>
+            </div>
+            <div class="timeline-item right fade-in" data-step="4">
+                <div class="timeline-content">
+                    <h3>Acompanhamento</h3>
+                    <p>Monitoramos os resultados através de KPIs, realizamos reuniões de acompanhamento e ajustamos a estratégia para garantir a evolução contínua e o sucesso do projeto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sobre Luiz Portal -->
+    <section id="sobre-luiz" class="container fade-in">
+        <h2>Sobre o Consultor Luiz Portal</h2>
+        <div class="grid grid-2 sobre-luiz-grid">
+            <div class="fade-in">
+                <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/FOTO_LUIZPORTAL.jpeg" alt="Foto de Luiz Portal">
+            </div>
+            <div class="content fade-in">
+                <p>Com mais de 10 anos de experiência em gestão comercial e estruturação de negócios, Luiz Portal é especialista em transformar o potencial de empresas em resultados de alta performance.</p>
+                <p>Sua abordagem combina visão estratégica com execução prática, atuando como um parceiro que não apenas aconselha, mas que participa ativamente da construção das soluções, garantindo que o planejamento se converta em ações eficazes e crescimento sustentável.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Diferenciais -->
+    <section id="diferenciais" class="container fade-in">
+        <h2>Nossos Diferenciais</h2>
+        <div class="grid grid-3">
+            <div class="card">
+                <h3>Metodologia Comprovada</h3>
+                <p>Nosso diagnóstico de Maturidade vs. Impacto e a execução com metodologias ágeis garantem foco, agilidade e resultados mensuráveis.</p>
+            </div>
+            <div class="card">
+                <h3>Visão Integrada</h3>
+                <p>Conectamos estratégia, processos, pessoas e tecnologia, garantindo que todas as áreas do seu negócio trabalhem em sinergia para o mesmo objetivo.</p>
+            </div>
+            <div class="card">
+                <h3>Ecossistema de Parceiros</h3>
+                <p>Contamos com uma rede de especialistas homologados em áreas complementares (financeiro, contábil, jurídico) para oferecer uma solução completa.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção CTA Final -->
+    <section class="container fade-in">
+        <div id="cta">
+            <h2>Vamos construir juntos o próximo nível do seu negócio?</h2>
+            <p>O primeiro passo para a transformação é uma boa conversa. Agende um diagnóstico sem compromisso e descubra como a LiVe pode impulsionar seus resultados.</p>
+            <a href="https://wa.me/556284002840" class="cta-button" target="_blank">Agende seu Diagnóstico</a>
+        </div>
+    </section>
+
+    <footer>
+         <div class="footer-logo">
+            <a href="#">
+                <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png" alt="LiVe Consultoria Logo">
+            </a>
+        </div>
+        <p>Transformando Pessoas. Impulsionando Empresas.</p>
+        <p style="margin-top: 2rem;">&copy; 2025 LiVe Consultoria. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
+
